@@ -12,13 +12,13 @@
         // Эту проверку можно удалить или удалить проверку на JS
         if($name=="" || $email=="" || $message=="" || $subject=="") {
             $return_arr["frm_check"] = 'error';
-            $return_arr["msg"] = "Пожалуйста, заполните все поля!";            
+            $return_arr["msg"] = "Lütfen tüm alanları doldurun!";            
         }     
         // Проверка на плохие слова. Если не мучают хулиганы, можно ее удалить.
         $badwords = array('предложение', 'купить', 'раскрутка'); 
         $banstring = ($message != str_ireplace($badwords,"XX",$message))? true: false; if ($banstring) { 
             $return_arr["frm_check"] = 'error';
-            $return_arr["msg"] = "Есть запрещенные слова";    
+            $return_arr["msg"] = "Yasak kelimeler var";    
         }
         
         if ($return_arr["frm_check"] != 'error') {            
@@ -33,7 +33,7 @@ $headers .= "Reply-To: $from\r\n";
             
             if (!mail($to, $subject, $message, $headers)) {
                 $return_arr["frm_check"] = 'error';
-                $return_arr["msg"] = "Сообщение не отправлено, ошибка почтового сервера!";    
+                $return_arr["msg"] = "Mesaj gönderilemedi, posta sunucusu hatası!";    
             }        
         }        
         echo json_encode($return_arr);
